@@ -1,10 +1,13 @@
 /* Yacc file to use only with STEP1 LEXDEF.L */
 %{
 #include <stdio.h>
-#include "symboltab.c" 
+#include "symboltab.c"
+#include "tab_inst.c" 
 
 int yylex(void);
 void yyerror(char*);
+
+int yydebug = 1;
 %}
 
 /*Declarations*/
@@ -33,9 +36,12 @@ void yyerror(char*);
 %left PLUS MINUS
 
 %{
+//global variables
 char* type; 
 int is_init;
 int is_const;
+int index_last_sym_inserted;
+char* name;
 %}
 
 %% /*rules*/
@@ -46,23 +52,57 @@ Main:
 Body:
 	|Declaration SEMI Body
 	|Expression SEMI Body
-	|Assignement SEMI Body
+	|Assignement Body
 	|Printf SEMI Body
 	;
 
 Expression:
-	Boolean
-	|INT {}
+	//Boolean
+	INT
+{
+	index_last_sym_inserted = insert_symb_tmp(type, is_init, is_const);
+}
 	|VAR_NAME
 	|Expression PLUS Expression
 {
 	int i = suppr_sym_tmp();
-	int j =
-
+	int j = suppr_sym_tmp();
+	insert_instru("LOAD",1,get_addr(i),0);
+	insert_instru("LOAD",2,get_addr(j),0);
+	insert_instru("ADD",3,1,2);
+	int k = insert_symb_tmp("int", is_init, is_const);
+	insert_instru("STORE", get_addr(k), 3,0); //Attention a STORE - comment renvoyer l'entier?
 }
 	|Expression MINUS Expression
+{
+	int i = suppr_sym_tmp();
+	int j = suppr_sym_tmp();
+	insert_instru("LOAD",1,get_addr(i),0);
+	insert_instru("LOAD",2,get_addr(j),0);
+	insert_instru("SOU",3,1,2);
+	int k = insert_symb_tmp("int", is_init, is_const);
+	insert_instru("STORE", get_addr(k), 3,0); //Attention a STORE - comment renvoyer l'entier?
+}
 	|Expression MULT Expression
+{
+	int i = suppr_sym_tmp();
+	int j = suppr_sym_tmp();
+	insert_instru("LOAD",1,get_addr(i),0);
+	insert_instru("LOAD",2,get_addr(j),0);
+	insert_instru("MUL",3,1,2);
+	int k = insert_symb_tmp("int", is_init, is_const);
+	insert_instru("STORE", get_addr(k), 3,0); //Attention a STORE - comment renvoyer l'entier?
+}
 	|Expression DIV Expression
+{
+	int i = suppr_sym_tmp();
+	int j = suppr_sym_tmp();
+	insert_instru("LOAD",1,get_addr(i),0);
+	insert_instru("LOAD",2,get_addr(j),0);
+	insert_instru("DIV",3,1,2);
+	int k = insert_symb_tmp("int", is_init, is_const);
+	insert_instru("STORE", get_addr(k), 3,0); //Attention a STORE - comment renvoyer l'entier?
+}
 	|BRACE_STA Expression BRACE_END
 	|While
 	|If;
@@ -86,6 +126,7 @@ Boolean:
 	|Boolean OR Boolean
 	|NOT Boolean
 	|INT COND_EQUAL INT
+
 	|INT COND_UNEQUAL INT
 	|INT COND_INF INT
 	|INT COND_SUP INT
@@ -99,16 +140,28 @@ Assignement:
 	VAR_NAME EQUAL Expression {is_init=1;};
 
 Declaration:
-	Type Const VAR_NAME {is_init=0;} Embedded_assignement Multiple_declaration { add_symb($3, type, is_init,is_const);};
+	Type Const VAR_NAME {is_init=0;} Embedded_assignement
+{
+	if (is_init==1) {
+		int i = suppr_sym_tmp();
+		insert_symb($3, type, is_init,is_const);
+	}
+} Multiple_declaration;
 
 Multiple_declaration:
-	COMMA Const VAR_NAME Embedded_assignement Multiple_declaration
+	COMMA Const VAR_NAME {name = strdup($3);} Embedded_assignement
+{	
+	if (is_init==1) {
+		int i = suppr_sym_tmp();
+		insert_symb($3, type, is_init,is_const);
+	}
+} Multiple_declaration
 	|
 	;
 
 Embedded_assignement:	
-	EQUAL Expression {is_init=1;};
-	|
+	EQUAL Expression {is_init=1;}
+	|				 {is_init=0;}
 	;
 
 Const:
@@ -124,7 +177,9 @@ Type:
 
 %% /*programs*/
 
-
-
+int main() {
+	yyparse();
+	return 0;
+}
 
 

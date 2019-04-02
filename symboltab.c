@@ -43,14 +43,16 @@ int insert_symb(char * id, char * type, int is_init, int is_const) {
 	tab[tab_index].is_init = is_init;
 	tab[tab_index].is_const = is_const;
 	tab[tab_index].mem_addr = &tab[tab_index];
+	tab_index++;
+	return tab_index-1;
 }
 
 
-int insert_sym_tmp(char * id, char * type, int is_init, int is_const) {
+int insert_symb_tmp(char * type, int is_init, int is_const) {
 	if (tab_index >= SIZE) {
 		return;
 	} else {
-		char* id_dup = strdup(id);
+		char* id_dup = strdup("tmp");
 		char* type_dup = strdup(type);
 		tab[tab_index].id = id_dup;
 		tab[tab_index].type = type_dup;
@@ -66,7 +68,7 @@ int insert_sym_tmp(char * id, char * type, int is_init, int is_const) {
 
 int suppr_sym_tmp() {
 	tab_index--;
-	return tab[tab_index+1].mem_addr;
+	return tab_index+1;
 }
 
 
