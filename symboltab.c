@@ -42,9 +42,11 @@ int insert_symb(char * id, char * type, int is_init, int is_const) {
 	tab[tab_index].depth = depth;
 	tab[tab_index].is_init = is_init;
 	tab[tab_index].is_const = is_const;
-	tab[tab_index].mem_addr = tab+(tab_index*32);
+	tab[tab_index].mem_addr = &tab[tab_index];
+
+	//printf("\n%d",&tab[tab_index]);
+	
 	tab_index++;
-	printf("symb ajoute a %d. tab_index = %d\n", tab[tab_index-1].mem_addr, tab_index);
 	return tab_index-1;
 }
 
@@ -61,6 +63,9 @@ int insert_symb_tmp(char * type, int is_init, int is_const) {
 		tab[tab_index].is_init = is_init;
 		tab[tab_index].is_const = is_const;
 		tab[tab_index].mem_addr = &tab[tab_index];
+
+		//printf("\n%d",&tab[tab_index]);
+		
 		tab_index++;
 		printf("symb tmp ajoute a %d. tab_index = %d\n", tab[tab_index-1].mem_addr, tab_index);
 		return tab_index-1;
@@ -93,11 +98,25 @@ void print_symb(char * id) {
 	int i;
 	for (i=0;i<SIZE;i++) {
 		if ((tab[i].id != NULL)&&(strcmp(tab[i].id, id)==0)) {
-			printf("id       = %s\n", tab[i].id);
-			printf("type 	 = %s\n", tab[i].type);
-			printf("depth 	 = %d\n", tab[i].depth);
-			printf("is_init  = %d\n", tab[i].is_init);
-			printf("is_const = %d\n", tab[i].is_const);
+			printf("id= %s ", tab[i].id);
+			printf("type= %s ", tab[i].type);
+			printf("depth= %d ", tab[i].depth);
+			printf("is_init= %d ", tab[i].is_init);
+			printf("is_const= %d\n", tab[i].is_const);
+		}
+	}
+}
+
+void print_symb_tab() {
+	int i;
+	for (i=0;i<SIZE;i++) {
+		if (tab[i].id != NULL) {
+			printf("id= %s ", tab[i].id);
+			printf("type= %s ", tab[i].type);
+			printf("depth= %d ", tab[i].depth);
+			printf("is_init= %d ", tab[i].is_init);
+			printf("is_const= %d", tab[i].is_const);
+			printf("mem_addr= %d\n", tab[i].mem_addr);
 		}
 	}
 }
