@@ -52,7 +52,7 @@ Main:
 Body:
 	|Declaration SEMI Body
 	|Expression SEMI Body
-	|Assignement Body
+	|Assignement SEMI Body
 	|Printf SEMI Body
 	;
 

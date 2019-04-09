@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h> 
 
-#define SIZE 16
+#define SIZE 256
 
 typedef struct {
 	char* id;
@@ -31,7 +31,7 @@ int insert_symb(char * id, char * type, int is_init, int is_const) {
 	int index_copy = tab_index;
 	while((index_copy >= 0)&&(tab[index_copy].depth == depth)) {
 		if((strcmp(tab[index_copy].id,id)==0)){
-			return; //si une variable de meme id et meme profondeur est deja dans le tableau alors on n'insert rien
+			return -1; //si une variable de meme id et meme profondeur est deja dans le tableau alors on n'insert rien
 		}
 		index_copy--;
 	}
@@ -50,7 +50,7 @@ int insert_symb(char * id, char * type, int is_init, int is_const) {
 
 int insert_symb_tmp(char * type, int is_init, int is_const) {
 	if (tab_index >= SIZE) {
-		return;
+		return -1;
 	} else {
 		char* id_dup = strdup("tmp");
 		char* type_dup = strdup(type);
@@ -74,7 +74,7 @@ int suppr_sym_tmp() {
 
 int get_addr(int index) {
 	if (index >= SIZE) {
-		return;
+		return -1;
 	} else {
 		return tab[tab_index].mem_addr;
 	}

@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#define SIZE 16
+#define SIZE 256
 
 typedef struct {
 	char* inst_name;
@@ -13,7 +13,8 @@ instru tab_instru[SIZE];
 
 void insert_instru(char * inst_name, int val_1, int val_2, int val_3) {
 	int i=0;
-	while(i<=SIZE) {
+	int inserted=0;
+	while(i<SIZE && inserted==0) {
 		if(tab_instru[i].inst_name != NULL) {
 			i++;
 		} else {
@@ -21,6 +22,7 @@ void insert_instru(char * inst_name, int val_1, int val_2, int val_3) {
 			tab_instru[i].val1=val_1;
 			tab_instru[i].val2=val_2;
 			tab_instru[i].val3=val_3;
+			inserted = 1;
 		}
 	}
 }
