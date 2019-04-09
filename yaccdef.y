@@ -125,26 +125,33 @@ Boolean:
 	|Boolean AND Boolean
 	|Boolean OR Boolean
 	|NOT Boolean
-	|INT COND_EQUAL INT
-
-	|INT COND_UNEQUAL INT
-	|INT COND_INF INT
-	|INT COND_SUP INT
-	|INT COND_INFEQUAL INT
-	|INT COND_SUPEQUAL INT;
+	|Expression COND_EQUAL Expression
+	|Expression COND_UNEQUAL Expression
+	|Expression COND_INF Expression
+	|Expression COND_SUP Expression
+	|Expression COND_INFEQUAL Expression
+	|Expression COND_SUPEQUAL Expression
+	;
 	
 Printf:
 	PRINTF PARTH_STA VAR_NAME PARTH_END;
 
 Assignement:
-	VAR_NAME EQUAL Expression {is_init=1;};
+	VAR_NAME EQUAL Expression
+{
+	is_init=1;
+	int i = suppr_sym_tmp();
+	int index = get_index($1,tab[i].depth);
+	insert_instru("LOAD",1,get_addr(i),0);
+	insert_instru("STORE",get_addr(index),1,0);
+};
 
 Declaration:
 	Type Const VAR_NAME {is_init=0;} Embedded_assignement
 {
 	if (is_init==1) {
 		int i = suppr_sym_tmp();
-		insert_symb($3, type, is_init,is_const);
+		insert_symb($3, type, is_init, is_const);
 		insert_instru("LOAD",1,get_addr(i),0);
 	}
 } Multiple_declaration;
