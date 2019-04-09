@@ -61,6 +61,8 @@ Expression:
 	INT
 {
 	index_last_sym_inserted = insert_symb_tmp(type, is_init, is_const);
+	insert_instru("AFC",1,$1,0);
+	insert_instru("STORE",get_addr(index_last_sym_inserted),1,0);
 }
 	|VAR_NAME
 	|Expression PLUS Expression
@@ -145,7 +147,8 @@ Declaration:
 	if (is_init==1) {
 		int i = suppr_sym_tmp();
 		insert_symb($3, type, is_init,is_const);
-		insert_instru("LOAD",1,get_addr(i),0);
+		//insert_instru("LOAD",1,get_addr(i),0);
+		//printf("\nindex i = %d, %d",i,get_addr(i));
 	}
 } Multiple_declaration;
 
@@ -155,7 +158,8 @@ Multiple_declaration:
 	if (is_init==1) {
 		int i = suppr_sym_tmp();
 		insert_symb($3, type, is_init,is_const);
-		insert_instru("LOAD",1,get_addr(i),0);
+		//insert_instru("LOAD",1,get_addr(i),0);
+		//printf("\nindex i = %d, %d",i,get_addr(i));
 	}
 } Multiple_declaration
 	|
@@ -182,6 +186,7 @@ Type:
 int main() {
 	yyparse();
 	printf("\n");
+	print_symb_tab();
 	print_tab();
 	return 0;
 }
