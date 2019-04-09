@@ -1,4 +1,4 @@
-comp : main.c y.tab.c lex.yy.c
+comp : y.tab.c lex.yy.c
 	gcc -o comp y.tab.c lex.yy.c -ly -ll
 
 y.tab.c : yaccdef.y

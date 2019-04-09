@@ -76,7 +76,7 @@ int get_addr(int index) {
 	if (index >= SIZE) {
 		return -1;
 	} else {
-		return tab[tab_index].mem_addr;
+		return tab[index].mem_addr;
 	}
 }
 

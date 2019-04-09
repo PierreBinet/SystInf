@@ -145,6 +145,7 @@ Declaration:
 	if (is_init==1) {
 		int i = suppr_sym_tmp();
 		insert_symb($3, type, is_init,is_const);
+		insert_instru("LOAD",1,get_addr(i),0);
 	}
 } Multiple_declaration;
 
@@ -154,6 +155,7 @@ Multiple_declaration:
 	if (is_init==1) {
 		int i = suppr_sym_tmp();
 		insert_symb($3, type, is_init,is_const);
+		insert_instru("LOAD",1,get_addr(i),0);
 	}
 } Multiple_declaration
 	|
@@ -179,6 +181,8 @@ Type:
 
 int main() {
 	yyparse();
+	printf("\n");
+	print_tab();
 	return 0;
 }
 
