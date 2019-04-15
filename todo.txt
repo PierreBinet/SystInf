@@ -1,5 +1,4 @@
 TO DO:
 
-- Instructions assembleur pour tester les booleens
 - Instructions assembleur pour code conditionnel
 - Interpréteur du code assembleur
