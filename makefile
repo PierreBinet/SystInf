@@ -2,7 +2,7 @@ comp : y.tab.c lex.yy.c
 	gcc -o comp y.tab.c lex.yy.c -ly -ll
 
 y.tab.c : yaccdef.y
-	yacc -d yaccdef.y
+	yacc -d -t yaccdef.y
 
 lex.yy.c : lexdef.l
 	flex  lexdef.l

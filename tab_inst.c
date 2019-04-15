@@ -34,5 +34,5 @@ void print_tab()
 		printf("%d: %s %d %d %d\n", i+1, tab_instru[i].inst_name, tab_instru[i].val1, tab_instru[i].val2, tab_instru[i].val3);
 		i++;
 	}
-
+	printf("\n");
 }

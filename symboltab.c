@@ -3,7 +3,7 @@
 
 #define SIZE 256
 
-typedef struct {
+typedef struct symb {
 	char* id;
 	char* type;
 	int depth;
@@ -67,7 +67,6 @@ int insert_symb_tmp(char * type, int is_init, int is_const) {
 		//printf("\n%d",&tab[tab_index]);
 		
 		tab_index++;
-		printf("symb tmp ajoute a %d. tab_index = %d\n", tab[tab_index-1].mem_addr, tab_index);
 		return tab_index-1;
 	}
 }
@@ -89,7 +88,7 @@ int get_addr(int index) {
 
 int get_index(char* id, int depth) {  //Renvoyer l'index d'un symbole à partir de son id et depth
 	int i = 0;
-	while (i<SIZE && !(strcmp(tab[i].id,id)==0 && tab[i].depth==depth)) i++;
+	while (i<SIZE && !(strcmp(tab[i].id,id)==0 && tab[i].depth<=depth)) i++; //Si deux symboles de meme id de depth inf, undefined behavior
 	if (i==SIZE) return -1;
 	else return i;
 }
