@@ -13,8 +13,8 @@ typedef struct symb {
 }symb;
 
 symb tab[SIZE];
-int tab_index =0;
-int depth =0;
+int tab_index = 0;
+int depth = 0;
 
 
 void depthadd() {
@@ -42,7 +42,7 @@ int insert_symb(char * id, char * type, int is_init, int is_const) {
 	tab[tab_index].depth = depth;
 	tab[tab_index].is_init = is_init;
 	tab[tab_index].is_const = is_const;
-	tab[tab_index].mem_addr = &tab[tab_index];
+	tab[tab_index].mem_addr = tab_index;
 
 	//printf("\n%d",&tab[tab_index]);
 	
@@ -62,7 +62,7 @@ int insert_symb_tmp(char * type, int is_init, int is_const) {
 		tab[tab_index].depth = depth;
 		tab[tab_index].is_init = is_init;
 		tab[tab_index].is_const = is_const;
-		tab[tab_index].mem_addr = &tab[tab_index];
+		tab[tab_index].mem_addr = tab_index;
 
 		//printf("\n%d",&tab[tab_index]);
 		

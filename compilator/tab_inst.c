@@ -31,7 +31,7 @@ void print_tab()
 {
 	int i=0;
 	while(tab_instru[i].inst_name != NULL) {
-		printf("%d: %s %d %d %d\n", i+1, tab_instru[i].inst_name, tab_instru[i].val1, tab_instru[i].val2, tab_instru[i].val3);
+		printf("%s %d %d %d\n", tab_instru[i].inst_name, tab_instru[i].val1, tab_instru[i].val2, tab_instru[i].val3);
 		i++;
 	}
 	printf("\n");
