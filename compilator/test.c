@@ -1,6 +1,14 @@
 int main() {
-	int testnumber = 15;
-	testnumber = 1261 + 5;
-	int a = 2;
+	int a = 12;
+	if (2 >= 3) {
+		a = 15;
+	} else if (3 < 4) {
+		a = 10;
+	} else {
+		a = 8;
+	}
+	int b = 1;
+	while (b < 10) {
+		b = b + 1;
+	}
 }
-

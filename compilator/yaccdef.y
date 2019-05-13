@@ -41,6 +41,7 @@ char* type;
 int is_init;
 int is_const;
 char* name;
+int telse;
 %}
 
 %% /*rules*/
@@ -115,14 +116,72 @@ Expression:
 	;
 
 While:
-	WHILE PARTH_STA Boolean PARTH_END BRACE_STA {depthadd();} Body BRACE_END {depthsub();};
+	WHILE PARTH_STA
+{
+	$<nb>2 = get_current_mem_addr();			//adresse du check du booleen
+}
+	Boolean PARTH_END BRACE_STA
+{
+	depthadd();
+	int tmp = suppr_sym_tmp();
+	insert_instru("LOAD",1,get_addr(tmp),0);
+	int addr = insert_instru("JMPC",99999,1,0);
+	$<nb>1 = addr;								//adresse du jmpc a fix
+}
+	Body BRACE_END
+{
+	depthsub();
+	insert_instru("JMP",$<nb>2,0,0);			//on jump au check du booleen
+	fix_jmp($<nb>1, get_current_mem_addr());	//on fix le jmpc
+}
+	;
 
 If:
-	IF PARTH_STA Boolean PARTH_END BRACE_STA {depthadd();} Body BRACE_END {depthsub();} Else;
+	IF PARTH_STA Boolean PARTH_END BRACE_STA
+{
+	depthadd();
+	int tmp = suppr_sym_tmp();						//resultat du booleen, 1 ou 0
+	insert_instru("LOAD",1,get_addr(tmp),0);
+	int addr = insert_instru("JMPC",99999,1,0);		//Si le booleen est 0, on jump, pour ne pas executer le if
+	$<nb>1 = addr;
+} 	
+	Body BRACE_END 
+{
+	depthsub();
+	fix_jmp($<nb>1,get_current_mem_addr()+1);
+	telse=0;
+}
+	Else
+{
+	if (telse == 0) fix_jmp($<nb>1, get_current_mem_addr());
+}
+	;
 
 Else:
-	|ELSE If
-	|ELSE BRACE_STA {depthadd();} Body BRACE_END {depthsub();}
+	|ELSE 
+{
+	telse=1;
+	depthadd();
+	int addr = insert_instru("JMP",99999,0,0);
+	$<nb>1 = addr;
+}
+	If
+{
+	depthsub();
+	fix_jmp($<nb>1,get_current_mem_addr());
+}
+	|ELSE
+{
+	telse=1;
+	depthadd();
+	int addr = insert_instru("JMP",99999,0,0);
+	$<nb>1 = addr;
+}
+	BRACE_STA Body BRACE_END
+{
+	depthsub();
+	fix_jmp($<nb>1,get_current_mem_addr());
+}
 	;
 
 Boolean:
