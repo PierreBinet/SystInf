@@ -8,7 +8,10 @@ lex.yy.c : lexdef.l
 	flex  lexdef.l
 
 test : comp
-	./comp < test.c
-
+	./comp < test.c > assembleur
+	sed -i '1d' assembleur
+	sed -i '$$d' assembleur
+	python3 interpreteur.py
+	
 clean :
-	rm lex.yy.c y.tab.c y.tab.h comp
+	rm lex.yy.c y.tab.c y.tab.h comp assembleur
