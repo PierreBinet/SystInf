@@ -46,11 +46,11 @@ entity BR is
 end BR;
 
 architecture Behavioral of BR is
-type Tab_type is array(3 downto 0) of STD_LOGIC_VECTOR ((NB-1) downto 0);
+type Tab_type is array(15 downto 0) of STD_LOGIC_VECTOR ((NB-1) downto 0);
 signal tab : Tab_type;
 begin
-	FRO<=tab(to_integer(unsigned(AFR)));
-	SRO<=tab(to_integer(unsigned(ASR)));
+	FRO<=tab(to_integer(unsigned(AFR))) when (AWR /= AFR) else WRI;
+	SRO<=tab(to_integer(unsigned(ASR))) when (AWR /= ASR) else WRI;
 	process
 	begin --implementer clock et if avec le mode
 		wait until CLK'event and CLK='1';
@@ -58,11 +58,6 @@ begin
 			tab <= (others => (others => '0'));
 		elsif MODE = '1' then
 			tab(to_integer(unsigned(AWR)))<=WRI;
---			if (AWR = AFR) then
---				FRO<=WRI;
---			elsif (AWR = ASR) then
---				SRO<=WRI;
---				end if;
 		end if;
 	end process;
 end Behavioral;
