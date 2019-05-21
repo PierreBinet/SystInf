@@ -72,12 +72,12 @@ architecture Structural of Proc is
 
 	 COMPONENT Pipeline
 	 GENERIC(NB : natural := 16);
-    PORT ( OPi : in  STD_LOGIC_VECTOR ((NB-1) downto 0);
+    PORT ( OPi : in  STD_LOGIC_VECTOR (((NB/2)-1) downto 0);
            Ai : in  STD_LOGIC_VECTOR ((NB-1) downto 0);
            Bi : in  STD_LOGIC_VECTOR ((NB-1) downto 0);
            Ci : in  STD_LOGIC_VECTOR ((NB-1) downto 0);
 			  
-			  OPo : out  STD_LOGIC_VECTOR ((NB-1) downto 0);
+			  OPo : out  STD_LOGIC_VECTOR (((NB/2)-1) downto 0);
            Ao : out  STD_LOGIC_VECTOR ((NB-1) downto 0);
            Bo : out  STD_LOGIC_VECTOR ((NB-1) downto 0);
            Co : out  STD_LOGIC_VECTOR ((NB-1) downto 0);
@@ -121,7 +121,7 @@ begin
 	EXMem : Pipeline port map(OP2,A2,B2,C2,OP3,A3,B3,C3,CLK);
 	MemRE : Pipeline port map(OP3,A3,B3,C3,OP4,A4,B4,C4,CLK);
 	
-	BRW : BR port map(x"0000",x"0000",open,open,A4(3 downto 0),B4,'1','1',CLK);
+	BRW : BR port map(x"0",x"0",open,open,A4(3 downto 0),B4,'1','1',CLK);
 	
 end Structural;
 

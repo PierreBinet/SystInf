@@ -31,12 +31,12 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity Pipeline is
 	 generic(NB : natural := 16);
-    Port ( OPi : in  STD_LOGIC_VECTOR ((NB-1) downto 0);
+    Port ( OPi : in  STD_LOGIC_VECTOR (((NB/2)-1) downto 0);
            Ai : in  STD_LOGIC_VECTOR ((NB-1) downto 0);
            Bi : in  STD_LOGIC_VECTOR ((NB-1) downto 0);
            Ci : in  STD_LOGIC_VECTOR ((NB-1) downto 0);
 			  
-			  OPo : out  STD_LOGIC_VECTOR ((NB-1) downto 0);
+			  OPo : out  STD_LOGIC_VECTOR (((NB/2)-1) downto 0);
            Ao : out  STD_LOGIC_VECTOR ((NB-1) downto 0);
            Bo : out  STD_LOGIC_VECTOR ((NB-1) downto 0);
            Co : out  STD_LOGIC_VECTOR ((NB-1) downto 0);
