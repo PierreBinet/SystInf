@@ -42,14 +42,14 @@ architecture Behavioral of Decoder is
 begin
 	OPtmp<=Instru(31 downto 24);
 	OP<=OPtmp;
-	A<=Instru(23 downto 8) when (OPtmp = x"8") else
+	A<=Instru(23 downto 8) when (OPtmp = x"08") else
 		Instru(23 downto 16);
 
-	B<=Instru(7 downto 0) when  (OPtmp = x"8") else
-		Instru(16 downto 0) when ((OPtmp = x"7") or (OPtmp = x"6")) else
+	B<=Instru(7 downto 0) when  (OPtmp = x"08") else
+		Instru(16 downto 0) when ((OPtmp = x"07") or (OPtmp = x"06")) else
 		Instru(15 downto 8);
 		
-	C<=x"0000" when ((OPtmp = x"8")or(OPtmp = x"7")or(OPtmp = x"6")or(OPtmp = x"5")) else
+	C<=x"0000" when ((OPtmp = x"08")or(OPtmp = x"07")or(OPtmp = x"06")or(OPtmp = x"5")) else
 		Instru(7 downto 0);
 end Behavioral;
 

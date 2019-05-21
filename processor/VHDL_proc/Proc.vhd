@@ -30,6 +30,9 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity Proc is
+	Port (CLK: in STD_LOGIC;
+			IP: in STD_LOGIC_VECTOR (7 downto 0)
+	);
 end Proc;
 
 architecture Structural of Proc is
@@ -45,7 +48,7 @@ architecture Structural of Proc is
     GENERIC(NB : natural := 16);
     Port( A : in  STD_LOGIC_VECTOR ((NB-1) downto 0);
           B : in  STD_LOGIC_VECTOR ((NB-1) downto 0);
-          OP : in  STD_LOGIC_VECTOR (3 downto 0);
+          OP : in  STD_LOGIC_VECTOR (7 downto 0);
           S : out  STD_LOGIC_VECTOR ((NB-1) downto 0);
 			 C : out  STD_LOGIC;
 			 N : out  STD_LOGIC;
@@ -82,9 +85,43 @@ architecture Structural of Proc is
 			  CLK : in STD_LOGIC);
 	 END COMPONENT;
 	 
-	 signal A, B, C: STD_LOGIC_VECTOR (15 downto 0);
+	 COMPONENT MD
+    PORT ( Adr : in  STD_LOGIC_VECTOR (15 downto 0);
+           DataIN : in  STD_LOGIC_VECTOR (15 downto 0);
+           RW : in  STD_LOGIC;
+           RST : in  STD_LOGIC;
+           CLK : in  STD_LOGIC;
+           DataOUT : out  STD_LOGIC_VECTOR (15 downto 0));
+	 END COMPONENT;
+	 
+	 COMPONENT MI
+    PORT ( Adr : in  STD_LOGIC_VECTOR (7 downto 0);
+           CLK : in  STD_LOGIC;
+			  Instru : out  STD_LOGIC_VECTOR (31 downto 0));
+	 END COMPONENT;
+	 
+	 signal Instru: STD_LOGIC_VECTOR (31 downto 0);
+	 signal Ainst, Binst, Cinst: STD_LOGIC_VECTOR (15 downto 0);
+	 signal OPinst: STD_LOGIC_VECTOR (7 downto 0);
+	 signal A1, B1, C1: STD_LOGIC_VECTOR (15 downto 0);
+	 signal OP1: STD_LOGIC_VECTOR (7 downto 0);
+	 signal A2, B2, C2: STD_LOGIC_VECTOR (15 downto 0);
+	 signal OP2: STD_LOGIC_VECTOR (7 downto 0);
+	 signal A3, B3, C3: STD_LOGIC_VECTOR (15 downto 0);
+	 signal OP3: STD_LOGIC_VECTOR (7 downto 0);
+	 signal A4, B4, C4: STD_LOGIC_VECTOR (15 downto 0);
+	 signal OP4: STD_LOGIC_VECTOR (7 downto 0);
+	 
 begin
-	
 
+	Mem_Instru : MI port map(IP,CLK,Instru);
+	Decoder_Instru : Decoder port map(Instru,OPinst,Ainst,Binst,Cinst);
+	LIDI : Pipeline port map(OPinst,Ainst,Binst,Cinst,OP1,A1,B1,C1,CLK);
+	DIEX : Pipeline port map(OP1,A1,B1,C1,OP2,A2,B2,C2,CLK);
+	EXMem : Pipeline port map(OP2,A2,B2,C2,OP3,A3,B3,C3,CLK);
+	MemRE : Pipeline port map(OP3,A3,B3,C3,OP4,A4,B4,C4,CLK);
+	
+	BRW : BR port map(x"0000",x"0000",open,open,A4(3 downto 0),B4,'1','1',CLK);
+	
 end Structural;
 

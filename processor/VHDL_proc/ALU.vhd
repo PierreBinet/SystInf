@@ -33,7 +33,7 @@ entity ALU is
 	 generic(NB : natural := 16);
     Port ( A : in  STD_LOGIC_VECTOR ((NB-1) downto 0);
            B : in  STD_LOGIC_VECTOR ((NB-1) downto 0);
-           OP : in  STD_LOGIC_VECTOR (3 downto 0);
+           OP : in  STD_LOGIC_VECTOR (7 downto 0);
            S : out  STD_LOGIC_VECTOR ((NB-1) downto 0);
 			  C : out  STD_LOGIC;
 			  N : out  STD_LOGIC;
@@ -54,9 +54,9 @@ begin
 	Sadd<=('0'&A)+('0'&B);
 	Smult<=A*B;
 	
-	Stmp<=Sadd((NB-1) downto 0) 	when OP=x"1" else
-		Smult((NB-1) downto 0)	when OP=x"2" else
-		A-B 					when OP=x"3" else
+	Stmp<=Sadd((NB-1) downto 0) 	when OP=x"01" else
+		Smult((NB-1) downto 0)	when OP=x"02" else
+		A-B 					when OP=x"03" else
 		(others => '0');
 	
 	S <= Stmp;
