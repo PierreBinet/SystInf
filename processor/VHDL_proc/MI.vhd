@@ -30,7 +30,7 @@ use IEEE.NUMERIC_STD.ALL;
 --use UNISIM.VComponents.all;
 
 entity MI is
-    Port ( 	Adr : in STD_LOGIC_VECTOR (7 downto 0);
+    Port ( 	Adr : in STD_LOGIC_VECTOR (2 downto 0);
 				CLK : in STD_LOGIC;
 				Instru : out  STD_LOGIC_VECTOR (31 downto 0)
 	 );
@@ -43,10 +43,13 @@ begin
 
 	process
 	begin
-		tab <= (others => x"06031111");
+		tab(1) <= (x"06031111");
 		--test, we gave the instruction x"06031111" to every case of the array
 		--this means AFC, R3, x"1111"
 		--affect the value x"1111" (4369) to the third register
+		
+		tab(2) <= (x"05040300");		--COP R3 into R4
+		
 		wait until CLK'event and CLK='1';
 		Instru <= tab(to_integer(unsigned(Adr)));
 	end process;

@@ -31,7 +31,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity Proc is
 	Port (CLK: in STD_LOGIC;
-			IP: in STD_LOGIC_VECTOR (7 downto 0)
+			IP: in STD_LOGIC_VECTOR (2 downto 0)
 	);
 end Proc;
 
@@ -95,7 +95,7 @@ architecture Structural of Proc is
 	 END COMPONENT;
 	 
 	 COMPONENT MI
-    PORT ( Adr : in  STD_LOGIC_VECTOR (7 downto 0);
+    PORT ( Adr : in  STD_LOGIC_VECTOR (2 downto 0);
            CLK : in  STD_LOGIC;
 			  Instru : out  STD_LOGIC_VECTOR (31 downto 0));
 	 END COMPONENT;
@@ -105,6 +105,7 @@ architecture Structural of Proc is
 	 signal OPinst: STD_LOGIC_VECTOR (7 downto 0);
 	 signal A1, B1, C1: STD_LOGIC_VECTOR (15 downto 0);
 	 signal OP1: STD_LOGIC_VECTOR (7 downto 0);
+	 signal B1bis, B1ter: STD_LOGIC_VECTOR (15 downto 0);
 	 signal A2, B2, C2: STD_LOGIC_VECTOR (15 downto 0);
 	 signal OP2: STD_LOGIC_VECTOR (7 downto 0);
 	 signal A3, B3, C3: STD_LOGIC_VECTOR (15 downto 0);
@@ -116,12 +117,19 @@ begin
 
 	Mem_Instru : MI port map(IP,CLK,Instru);
 	Decoder_Instru : Decoder port map(Instru,OPinst,Ainst,Binst,Cinst);
+	
 	LIDI : Pipeline port map(OPinst,Ainst,Binst,Cinst,OP1,A1,B1,C1,CLK);
-	DIEX : Pipeline port map(OP1,A1,B1,C1,OP2,A2,B2,C2,CLK);
+	
+	BRW : BR port map(B1(3 downto 0),x"0",B1bis,open,A4(3 downto 0),B4,'1','1',CLK);
+	B1ter <= B1bis 	when (OP1=x"05") else
+			B1; --MUX, choosing B from BR if instruction is COP, or else from last pipeline
+	
+	DIEX : Pipeline port map(OP1,A1,B1ter,C1,OP2,A2,B2,C2,CLK);
+	
 	EXMem : Pipeline port map(OP2,A2,B2,C2,OP3,A3,B3,C3,CLK);
+	
 	MemRE : Pipeline port map(OP3,A3,B3,C3,OP4,A4,B4,C4,CLK);
 	
-	BRW : BR port map(x"0",x"0",open,open,A4(3 downto 0),B4,'1','1',CLK);
 	
 end Structural;
 
