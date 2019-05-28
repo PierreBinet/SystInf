@@ -46,7 +46,10 @@ BEGIN
 		IP<="001"; --operation 1 is AFC
 		wait for 100 ns;
 		
-		IP<="010"; --operation 2 is COP
+		IP<="010"; --operation 2 is AFC
+		wait for 100 ns;
+		
+		IP<="011"; --operation 3 is ADD
 		wait;
 	END PROCESS tb;
 

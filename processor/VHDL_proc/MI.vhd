@@ -43,12 +43,14 @@ begin
 
 	process
 	begin
-		tab(1) <= (x"06031111");
+		tab(1) <= (x"0603000F");
 		--test, we gave the instruction x"06031111" to every case of the array
 		--this means AFC, R3, x"1111"
 		--affect the value x"1111" (4369) to the third register
 		
-		tab(2) <= (x"05040300");		--COP R3 into R4
+		tab(2) <= (x"06040003");		--AFC 0001 into R4
+		
+		tab(3) <= (x"03050304");		--ADD R3+R4 into R5
 		
 		wait until CLK'event and CLK='1';
 		Instru <= tab(to_integer(unsigned(Adr)));
