@@ -22,7 +22,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
+use IEEE.NUMERIC_STD.ALL;
 
 -- Uncomment the following library declaration if instantiating
 -- any Xilinx primitives in this code.
@@ -47,7 +47,7 @@ begin
 		wait until CLK'event and CLK='1';
 		if RST = '0' then
 			tab <= (others => (others => '0'));
-		elsif RW = '0' then
+		elsif RW = '1' then
 			tab(to_integer(unsigned(Adr))) <= DataIN;
 		else
 			DataOUT <= tab(to_integer(unsigned(Adr)));

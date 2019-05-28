@@ -105,6 +105,8 @@ architecture Structural of Proc is
 	 signal Ainst, Binst, Cinst: STD_LOGIC_VECTOR (15 downto 0);
 	 signal OPinst: STD_LOGIC_VECTOR (7 downto 0);
 	 
+	 signal Data_to_write: STD_LOGIC_VECTOR (15 downto 0);
+	 
 	 signal A1, B1, C1: STD_LOGIC_VECTOR (15 downto 0);
 	 signal OP1: STD_LOGIC_VECTOR (7 downto 0);
 	 signal B1bis, B1ter, C1bis, C1ter: STD_LOGIC_VECTOR (15 downto 0);
@@ -117,6 +119,9 @@ architecture Structural of Proc is
 	 signal A3, B3: STD_LOGIC_VECTOR (15 downto 0);
 	 signal OP3: STD_LOGIC_VECTOR (7 downto 0);
 	 
+	 signal Addr_mem, Data_load: STD_LOGIC_VECTOR (15 downto 0);
+	 signal WE_mem: STD_LOGIC;
+	 
 	 signal A4, B4: STD_LOGIC_VECTOR (15 downto 0);
 	 signal OP4: STD_LOGIC_VECTOR (7 downto 0);
 	 
@@ -128,10 +133,12 @@ begin
 	LIDI : Pipeline port map(OPinst,Ainst,Binst,Cinst,OP1,A1,B1,C1,CLK);--------------------
 	
 	--WRITE ENABLE determined with the operation code
-	WE <= '0' when (((OP1=x"08")or(OP1=x"0E"))or(OP1=x"0F")) else
-			'1';
+	WE <= '1' when ((OP4=x"01")or(OP4=x"02")or(OP4=x"03")or(OP4=x"04")or(OP4=x"05")or(OP4=x"06")or(OP4=x"07")or(OP4=x"09")or(OP4=x"0A")or(OP4=x"0B")or(OP4=x"0C")or(OP4=x"0D")) else
+			'0';
 			
-	BRW : BR port map(B1(3 downto 0),C1(3 downto 0),B1bis,C1bis,A4(3 downto 0),B4,WE,'1',CLK);
+	Data_to_write <= Data_load when (OP4 = x"07") else B4;	--Take data from memory if LOAD
+			
+	BRW : BR port map(B1(3 downto 0),C1(3 downto 0),B1bis,C1bis,A4(3 downto 0),Data_to_write,WE,'1',CLK);
 	
 	--MUX, bypass BRW when operation is AFC, LOAD or JMP
 	B1ter <= B1 	when (OP1=x"06")or(OP1=x"07")or(OP1=x"0E") else
@@ -149,6 +156,12 @@ begin
 				B2bis;
 				
 	EXMem : Pipeline port map(OP2,A2,B2ter,C2,OP3,A3,B3,open,CLK);--------------------------
+	
+	Addr_mem <= B3 when (OP3=x"07") else A3;
+	
+	WE_mem <= '1' when (OP3=x"08") else '0';
+	
+	Mem_Data : MD port map(Addr_mem,B3,WE_mem,'1',CLK,Data_load);
 	
 	MemRE : Pipeline port map(OP3,A3,B3,x"0000",OP4,A4,B4,open,CLK);------------------------
 	

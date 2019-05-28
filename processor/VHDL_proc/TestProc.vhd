@@ -49,7 +49,10 @@ BEGIN
 		IP<="010"; --operation 2 is AFC
 		wait for 100 ns;
 		
-		IP<="011"; --operation 3 is ADD
+		IP<="011"; --operation 3 is STORE
+		wait for 100 ns;
+		
+		IP<="100"; --operation 4 is LOAD
 		wait;
 	END PROCESS tb;
 
