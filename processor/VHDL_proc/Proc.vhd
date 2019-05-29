@@ -30,12 +30,18 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity Proc is
-	Port (CLK: in STD_LOGIC;
-			IP: in STD_LOGIC_VECTOR (2 downto 0)
+	Port (CLK: in STD_LOGIC
 	);
 end Proc;
 
 architecture Structural of Proc is
+
+	 COMPONENT PC
+	 PORT( CLK : in  STD_LOGIC;
+			 Alea : in  STD_LOGIC;
+			 IP : out  STD_LOGIC_VECTOR (2 downto 0));
+	 END COMPONENT;
+	 
 	 COMPONENT Decoder
 	 PORT( Instru : in  STD_LOGIC_VECTOR (31 downto 0);
 			 OP : out  STD_LOGIC_VECTOR (7 downto 0);
@@ -97,13 +103,18 @@ architecture Structural of Proc is
 	 COMPONENT MI
     PORT ( Adr : in  STD_LOGIC_VECTOR (2 downto 0);
            CLK : in  STD_LOGIC;
+			  Alea : in STD_LOGIC;
 			  Instru : out  STD_LOGIC_VECTOR (31 downto 0));
 	 END COMPONENT;
 	 
 	 signal Instru: STD_LOGIC_VECTOR (31 downto 0);
 	 
+	 signal IP: STD_LOGIC_VECTOR (2 downto 0);
+	 
 	 signal Ainst, Binst, Cinst: STD_LOGIC_VECTOR (15 downto 0);
 	 signal OPinst: STD_LOGIC_VECTOR (7 downto 0);
+	 
+	 signal Alea: STD_LOGIC;
 	 
 	 signal Data_to_write: STD_LOGIC_VECTOR (15 downto 0);
 	 
@@ -127,7 +138,12 @@ architecture Structural of Proc is
 	 
 begin
 
-	Mem_Instru : MI port map(IP,CLK,Instru);
+	Alea <= '1' when ((OPinst=x"01")or(OPinst=x"02")or(OPinst=x"03")or(OPinst=x"04")or(OPinst=x"05")or(OPinst=x"08")or(OPinst=x"09")or(OPinst=x"0A")or(OPinst=x"0B")or(OPinst=x"0C")or(OPinst=x"0D")or(OPinst=x"0F"))
+	and ((B1(3 downto 0)=A2(3 downto 0)) or (B1(3 downto 0)=A3(3 downto 0)) or (B1(3 downto 0)=A4(3 downto 0)) or (C1(3 downto 0)=A2(3 downto 0)) or (C1(3 downto 0)=A3(3 downto 0)) or (C1(3 downto 0)=A4(3 downto 0))) else '0';
+	
+	Proc_count : PC port map(CLK,Alea,IP);
+	
+	Mem_Instru : MI port map(IP,CLK,Alea,Instru);
 	Decoder_Instru : Decoder port map(Instru,OPinst,Ainst,Binst,Cinst);
 	
 	LIDI : Pipeline port map(OPinst,Ainst,Binst,Cinst,OP1,A1,B1,C1,CLK);--------------------
@@ -141,10 +157,10 @@ begin
 	BRW : BR port map(B1(3 downto 0),C1(3 downto 0),B1bis,C1bis,A4(3 downto 0),Data_to_write,WE,'1',CLK);
 	
 	--MUX, bypass BRW when operation is AFC, LOAD or JMP
-	B1ter <= B1 	when (OP1=x"06")or(OP1=x"07")or(OP1=x"0E") else
+	B1ter <= B1 	when (OP1=x"00")or(OP1=x"06")or(OP1=x"07")or(OP1=x"0E") else
 				B1bis; 
 	--MUX, bypass BRW when operation is COP, AFC, LOAD, STORE, JMP or JMPC
-	C1ter <= C1 	when (OP1=x"05")or(OP1=x"06")or(OP1=x"07")or(OP1=x"08")or(OP1=x"0E")or(OP1=x"0F") else
+	C1ter <= C1 	when (OP1=x"00")or(OP1=x"05")or(OP1=x"06")or(OP1=x"07")or(OP1=x"08")or(OP1=x"0E")or(OP1=x"0F") else
 				C1bis;
 	
 	DIEX : Pipeline port map(OP1,A1,B1ter,C1ter,OP2,A2,B2,C2,CLK);--------------------------
@@ -152,7 +168,7 @@ begin
 	UAL : ALU port map(B2,C2,OP2,B2bis,open,open,open);
 	
 	--MUX: bypass UAL when operation is COP, AFC, LOAD, STORE or JMP
-	B2ter <= B2 when (OP2=x"05")or(OP2=x"06")or(OP2=x"07")or(OP2=x"08")or(OP2=x"0E") else
+	B2ter <= B2 when (OP2=x"00")or(OP2=x"05")or(OP2=x"06")or(OP2=x"07")or(OP2=x"08")or(OP2=x"0E") else
 				B2bis;
 				
 	EXMem : Pipeline port map(OP2,A2,B2ter,C2,OP3,A3,B3,open,CLK);--------------------------

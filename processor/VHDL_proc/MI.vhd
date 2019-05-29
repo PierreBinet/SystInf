@@ -32,6 +32,7 @@ use IEEE.NUMERIC_STD.ALL;
 entity MI is
     Port ( 	Adr : in STD_LOGIC_VECTOR (2 downto 0);
 				CLK : in STD_LOGIC;
+				Alea : in STD_LOGIC;
 				Instru : out  STD_LOGIC_VECTOR (31 downto 0)
 	 );
 end MI;
@@ -43,6 +44,8 @@ begin
 
 	process
 	begin
+		tab <= (others => x"00000000");
+		
 		tab(1) <= (x"0603000F");		--AFC 000F to R3
 		
 		tab(2) <= (x"06040003");		--AFC 0003 into R4
@@ -50,9 +53,13 @@ begin
 		tab(3) <= (x"08000104");		--STORE R4 at Addr 0001
 		
 		tab(4) <= (x"07030001");		--LOAD Addr 0001 into R3
-		
+
 		wait until CLK'event and CLK='1';
-		Instru <= tab(to_integer(unsigned(Adr)));
+		if Alea='0' then
+			Instru <= tab(to_integer(unsigned(Adr)));
+		else
+			Instru <= (x"00000000");
+		end if;
 	end process;
 end Behavioral;
 

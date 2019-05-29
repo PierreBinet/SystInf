@@ -10,11 +10,9 @@ END TestProc;
 ARCHITECTURE behavior OF TestProc IS 
 	-- Component Declaration
 	COMPONENT Proc
-	Port (CLK: in STD_LOGIC;
-			IP: in STD_LOGIC_VECTOR (2 downto 0));
+	Port (CLK: in STD_LOGIC);
 	END COMPONENT;
-
-	SIGNAL IP :  std_logic_vector(2 downto 0) := "000";
+	
    signal CLK : std_logic := '0';
 	
 	-- Clock period definitions
@@ -23,8 +21,7 @@ BEGIN
 
 	-- Component Instantiation
 	uut: Proc PORT MAP(
-			CLK => CLK,
-			IP => IP
+			CLK => CLK
 	);
 			 
 	-- Clock process definitions
@@ -35,25 +32,5 @@ BEGIN
 		CLK <= '1';
 		wait for CLK_period/2;
 	end process;
-
-
-	--  Test Bench Statements
-	tb : PROCESS
-	BEGIN
-		wait for 100 ns; -- wait until global set/reset completes
-		-- Add user defined stimulus here
-		
-		IP<="001"; --operation 1 is AFC
-		wait for 100 ns;
-		
-		IP<="010"; --operation 2 is AFC
-		wait for 100 ns;
-		
-		IP<="011"; --operation 3 is STORE
-		wait for 100 ns;
-		
-		IP<="100"; --operation 4 is LOAD
-		wait;
-	END PROCESS tb;
 
 END;
