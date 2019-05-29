@@ -16,7 +16,7 @@ ARCHITECTURE behavior OF TestProc IS
    signal CLK : std_logic := '0';
 	
 	-- Clock period definitions
-	constant CLK_period : time := 10 ns;
+	constant CLK_period : time := 100 ns;
 BEGIN
 
 	-- Component Instantiation

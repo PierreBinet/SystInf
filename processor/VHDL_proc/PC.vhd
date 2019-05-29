@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date:    12:49:35 05/21/2019 
+-- Create Date:    15:07:39 05/28/2019 
 -- Design Name: 
--- Module Name:    MI - Behavioral 
+-- Module Name:    PC - Behavioral 
 -- Project Name: 
 -- Target Devices: 
 -- Tool versions: 
@@ -19,6 +19,8 @@
 ----------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -29,36 +31,21 @@ use IEEE.NUMERIC_STD.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity MI is
-    Port ( 	Adr : in STD_LOGIC_VECTOR (2 downto 0);
-				CLK : in STD_LOGIC;
-				Alea : in STD_LOGIC;
-				Instru : out  STD_LOGIC_VECTOR (31 downto 0)
-	 );
-end MI;
+entity PC is
+    Port ( CLK : in  STD_LOGIC;
+           Alea : in  STD_LOGIC;
+           IP : out  STD_LOGIC_VECTOR (2 downto 0));
+end PC;
 
-architecture Behavioral of MI is
-type Tab_type is array(7 downto 0) of STD_LOGIC_VECTOR (31 downto 0);
-signal tab : Tab_type; 
+architecture Behavioral of PC is
+signal count : STD_LOGIC_VECTOR (2 downto 0);
 begin
-
+	IP <= count;
 	process
 	begin
-		tab <= (others => x"00000000");
-		
-		tab(1) <= (x"0603000F");		--AFC 000F to R3
-		
-		tab(2) <= (x"06040003");		--AFC 0003 into R4
-		
-		tab(3) <= (x"08000104");		--STORE R4 at Addr 0001
-		
-		tab(4) <= (x"01050304");		--LOAD Addr 0001 into R3
-
 		wait until CLK'event and CLK='1';
 		if Alea='0' then
-			Instru <= tab(to_integer(unsigned(Adr)));
-		else
-			Instru <= (x"00000000");
+			count <= count + 1;
 		end if;
 	end process;
 end Behavioral;

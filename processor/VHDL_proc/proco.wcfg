@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="/home/pbinet/Documents/4A/SystInf/processor/VHDL_proc/TestProc_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="numeric_std" />
+            <top_module name="std_logic_1164" />
+            <top_module name="std_logic_arith" />
+            <top_module name="std_logic_unsigned" />
+            <top_module name="testproc" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="14" />
+   <wvobject fp_name="/testproc/ip" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">ip[2:0]</obj_property>
+      <obj_property name="ObjectShortName">ip[2:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testproc/clk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testproc/clk_period" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">clk_period</obj_property>
+      <obj_property name="ObjectShortName">clk_period</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="group44" type="group">
+      <obj_property name="label">li_di</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <wvobject fp_name="/testproc/uut/LIDI/opi" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">opi[7:0]</obj_property>
+         <obj_property name="ObjectShortName">opi[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/LIDI/ai" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">ai[15:0]</obj_property>
+         <obj_property name="ObjectShortName">ai[15:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/LIDI/bi" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">bi[15:0]</obj_property>
+         <obj_property name="ObjectShortName">bi[15:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/LIDI/ci" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">ci[15:0]</obj_property>
+         <obj_property name="ObjectShortName">ci[15:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/LIDI/opo" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">opo[7:0]</obj_property>
+         <obj_property name="ObjectShortName">opo[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/LIDI/ao" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">ao[15:0]</obj_property>
+         <obj_property name="ObjectShortName">ao[15:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/LIDI/bo" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">bo[15:0]</obj_property>
+         <obj_property name="ObjectShortName">bo[15:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/LIDI/co" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">co[15:0]</obj_property>
+         <obj_property name="ObjectShortName">co[15:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group61" type="group">
+      <obj_property name="label">di_ex</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <wvobject fp_name="/testproc/uut/DIEX/opi" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">opi[7:0]</obj_property>
+         <obj_property name="ObjectShortName">opi[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/DIEX/ai" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">ai[15:0]</obj_property>
+         <obj_property name="ObjectShortName">ai[15:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/DIEX/bi" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">bi[15:0]</obj_property>
+         <obj_property name="ObjectShortName">bi[15:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/DIEX/ci" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">ci[15:0]</obj_property>
+         <obj_property name="ObjectShortName">ci[15:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/DIEX/opo" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">opo[7:0]</obj_property>
+         <obj_property name="ObjectShortName">opo[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/DIEX/ao" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">ao[15:0]</obj_property>
+         <obj_property name="ObjectShortName">ao[15:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/DIEX/bo" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">bo[15:0]</obj_property>
+         <obj_property name="ObjectShortName">bo[15:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/DIEX/co" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">co[15:0]</obj_property>
+         <obj_property name="ObjectShortName">co[15:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group35" type="group">
+      <obj_property name="label">alu</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <wvobject fp_name="/testproc/uut/UAL/a" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">a[15:0]</obj_property>
+         <obj_property name="ObjectShortName">a[15:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/UAL/b" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">b[15:0]</obj_property>
+         <obj_property name="ObjectShortName">b[15:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/UAL/op" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">op[7:0]</obj_property>
+         <obj_property name="ObjectShortName">op[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/UAL/s" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">s[15:0]</obj_property>
+         <obj_property name="ObjectShortName">s[15:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/UAL/sadd" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">sadd[16:0]</obj_property>
+         <obj_property name="ObjectShortName">sadd[16:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/UAL/smult" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">smult[31:0]</obj_property>
+         <obj_property name="ObjectShortName">smult[31:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/UAL/stmp" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">stmp[15:0]</obj_property>
+         <obj_property name="ObjectShortName">stmp[15:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/testproc/uut/UAL/nb" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">nb</obj_property>
+      <obj_property name="ObjectShortName">nb</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="group59" type="group">
+      <obj_property name="label">ExMem</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <wvobject fp_name="/testproc/uut/EXMem/opi" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">opi[7:0]</obj_property>
+         <obj_property name="ObjectShortName">opi[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/EXMem/ai" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">ai[15:0]</obj_property>
+         <obj_property name="ObjectShortName">ai[15:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/EXMem/bi" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">bi[15:0]</obj_property>
+         <obj_property name="ObjectShortName">bi[15:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/EXMem/ci" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">ci[15:0]</obj_property>
+         <obj_property name="ObjectShortName">ci[15:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/EXMem/opo" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">opo[7:0]</obj_property>
+         <obj_property name="ObjectShortName">opo[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/EXMem/ao" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">ao[15:0]</obj_property>
+         <obj_property name="ObjectShortName">ao[15:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/EXMem/bo" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">bo[15:0]</obj_property>
+         <obj_property name="ObjectShortName">bo[15:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/EXMem/co" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">co[15:0]</obj_property>
+         <obj_property name="ObjectShortName">co[15:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/testproc/uut/BRW/awr" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">awr[3:0]</obj_property>
+      <obj_property name="ObjectShortName">awr[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testproc/uut/BRW/wri" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">wri[15:0]</obj_property>
+      <obj_property name="ObjectShortName">wri[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testproc/uut/BRW/mode" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">mode</obj_property>
+      <obj_property name="ObjectShortName">mode</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testproc/uut/BRW/rst" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testproc/uut/BRW/tab" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">tab[15:0]</obj_property>
+      <obj_property name="ObjectShortName">tab[15:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <wvobject fp_name="/testproc/uut/BRW/tab[15]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[15]</obj_property>
+         <obj_property name="ObjectShortName">tab[15]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/BRW/tab[14]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[14]</obj_property>
+         <obj_property name="ObjectShortName">tab[14]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/BRW/tab[13]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[13]</obj_property>
+         <obj_property name="ObjectShortName">tab[13]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/BRW/tab[12]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[12]</obj_property>
+         <obj_property name="ObjectShortName">tab[12]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/BRW/tab[11]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[11]</obj_property>
+         <obj_property name="ObjectShortName">tab[11]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/BRW/tab[10]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[10]</obj_property>
+         <obj_property name="ObjectShortName">tab[10]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/BRW/tab[9]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[9]</obj_property>
+         <obj_property name="ObjectShortName">tab[9]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/BRW/tab[8]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[8]</obj_property>
+         <obj_property name="ObjectShortName">tab[8]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/BRW/tab[7]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[7]</obj_property>
+         <obj_property name="ObjectShortName">tab[7]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/BRW/tab[6]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[6]</obj_property>
+         <obj_property name="ObjectShortName">tab[6]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/BRW/tab[5]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[5]</obj_property>
+         <obj_property name="ObjectShortName">tab[5]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/BRW/tab[4]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[4]</obj_property>
+         <obj_property name="ObjectShortName">tab[4]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/BRW/tab[3]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[3]</obj_property>
+         <obj_property name="ObjectShortName">tab[3]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/BRW/tab[2]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[2]</obj_property>
+         <obj_property name="ObjectShortName">tab[2]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/BRW/tab[1]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[1]</obj_property>
+         <obj_property name="ObjectShortName">tab[1]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/BRW/tab[0]" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">[0]</obj_property>
+         <obj_property name="ObjectShortName">tab[0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group62" type="group">
+      <obj_property name="label">Memory</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/testproc/uut/Mem_Data/tab" type="array" db_ref_id="1">
+         <obj_property name="ElementShortName">tab[7:0]</obj_property>
+         <obj_property name="ObjectShortName">tab[7:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+         <wvobject fp_name="/testproc/uut/Mem_Data/tab[7]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[7]</obj_property>
+            <obj_property name="ObjectShortName">tab[7]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/testproc/uut/Mem_Data/tab[6]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[6]</obj_property>
+            <obj_property name="ObjectShortName">tab[6]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/testproc/uut/Mem_Data/tab[5]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[5]</obj_property>
+            <obj_property name="ObjectShortName">tab[5]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/testproc/uut/Mem_Data/tab[4]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[4]</obj_property>
+            <obj_property name="ObjectShortName">tab[4]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/testproc/uut/Mem_Data/tab[3]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[3]</obj_property>
+            <obj_property name="ObjectShortName">tab[3]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/testproc/uut/Mem_Data/tab[2]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[2]</obj_property>
+            <obj_property name="ObjectShortName">tab[2]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/testproc/uut/Mem_Data/tab[1]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[1]</obj_property>
+            <obj_property name="ObjectShortName">tab[1]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+         <wvobject fp_name="/testproc/uut/Mem_Data/tab[0]" type="array" db_ref_id="1">
+            <obj_property name="ElementShortName">[0]</obj_property>
+            <obj_property name="ObjectShortName">tab[0]</obj_property>
+            <obj_property name="Radix">HEXRADIX</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="/testproc/uut/Mem_Data/rw" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">rw</obj_property>
+         <obj_property name="ObjectShortName">rw</obj_property>
+      </wvobject>
+   </wvobject>
+</wave_config>

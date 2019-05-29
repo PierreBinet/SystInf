@@ -137,7 +137,7 @@ architecture Structural of Proc is
 	 signal OP4: STD_LOGIC_VECTOR (7 downto 0);
 	 
 begin
-
+	--ALEA is 1 for every operation except AFC, LOAD or JMP
 	Alea <= '1' when ((OPinst=x"01")or(OPinst=x"02")or(OPinst=x"03")or(OPinst=x"04")or(OPinst=x"05")or(OPinst=x"08")or(OPinst=x"09")or(OPinst=x"0A")or(OPinst=x"0B")or(OPinst=x"0C")or(OPinst=x"0D")or(OPinst=x"0F"))
 	and ((B1(3 downto 0)=A2(3 downto 0)) or (B1(3 downto 0)=A3(3 downto 0)) or (B1(3 downto 0)=A4(3 downto 0)) or (C1(3 downto 0)=A2(3 downto 0)) or (C1(3 downto 0)=A3(3 downto 0)) or (C1(3 downto 0)=A4(3 downto 0))) else '0';
 	
